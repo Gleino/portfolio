@@ -6,11 +6,11 @@
 
 /*root*/
 :root {
---color-primary: #1e88e5; /* Tom base de verde azulado */
---color-primary-light: #64b5f6; /* Versão mais clara do tom base */
---color-primary-dark: #0d47a1; /* Versão mais escura do tom base */
---color-secondary: #212f44; /* Mantido o secundário neutro escuro */
---color-light: #f5f5f5; /* Mantido o branco */
+--color-primary: #1e88e5;
+--color-primary-light: #64b5f6;
+--color-primary-dark: #0d47a1;
+--color-secondary: #212f44;
+--color-light: #f5f5f5;
 --color-ligt-transparent: #263238d5;
 --color-dark: #263238;
 --color-success: #38b000;
@@ -25,7 +25,6 @@ html {
 body {
     overflow-x: hidden;
     font-family: 'Quicksand', sans-serif;
-    text-align: justify;
     background-color: var(--color-light);
     display: grid;
     grid-template-columns: 1fr;
@@ -79,7 +78,6 @@ p.BotToTop {
 
 section {
     padding: 20px;
-    height: max-content;
 }
 
 /*Botão do menu*/
@@ -217,8 +215,13 @@ nav a.link-shrink {
     color: var(--color-primary-dark);
 }
 
+.aboutPage h1 {
+    font-size: 2rem;
+}
+
 .aboutPage p {
     color: var(--color-light);
+    font-size: 1rem;
 }
 
 /*Sobre mim*/
@@ -299,7 +302,6 @@ nav a.link-shrink {
     background-attachment: fixed;
     min-height: 110vh;
     padding: 40px 20px;
-    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
