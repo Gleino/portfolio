@@ -217,11 +217,13 @@ nav a.link-shrink {
 
 .aboutPage h1 {
     font-size: 2rem;
+    text-align: center;
 }
 
 .aboutPage p {
     color: var(--color-light);
     font-size: 1rem;
+    text-align: center;
 }
 
 /*Sobre mim*/
