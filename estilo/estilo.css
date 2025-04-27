@@ -1,0 +1,830 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*root*/
+:root {
+--color-primary: #1e88e5; /* Tom base de verde azulado */
+--color-primary-light: #64b5f6; /* Versão mais clara do tom base */
+--color-primary-dark: #0d47a1; /* Versão mais escura do tom base */
+--color-secondary: #212f44; /* Mantido o secundário neutro escuro */
+--color-light: #f5f5f5; /* Mantido o branco */
+--color-ligt-transparent: #263238d5;
+--color-dark: #263238;
+--color-success: #38b000;
+}
+
+/*Geral*/
+html {
+    scroll-behavior: smooth;
+}
+
+/*Mobile first*/
+body {
+    overflow-x: hidden;
+    font-family: 'Quicksand', sans-serif;
+    text-align: justify;
+    background-color: var(--color-light);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "header"
+    "aboutPage"
+    "aboutMe"
+    "habilidades"
+    "projects"
+    "contact";
+}
+
+a {
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 20px;
+    transition-duration: 200ms;
+}
+
+a:hover {
+    transform: translate(-2px, -2px);
+    transition-duration: 200ms;
+}
+
+p {
+    max-width: 90%;
+    margin: auto;
+    padding: 10px;
+    text-indent: 15px;
+    text-align: left;
+}
+p.animList {
+    opacity: 0;
+    transform: translateY(50px);
+    transition-duration: 200ms;
+}
+p.BotToTop {
+    opacity: 1;
+    transform: translateY(0);
+}
+.LefToo {
+    opacity: 0;
+    transform: translateX(50px);
+    transition-duration: 800ms;
+}
+.LefToo.LefToRig {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+section {
+    padding: 20px;
+    height: max-content;
+}
+
+/*Botão do menu*/
+.menu-toggle {
+    font-size: 26px;
+    background: none;
+    border: none;
+    color: var(--color-dark);
+    cursor: pointer;
+}
+nav.aberto {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+}
+
+/*Header*/
+header {
+    grid-area: header;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    padding: 15px 20px;
+    height: 10vh;
+    max-width: 100vw;
+}
+header.shrink {
+    height: 6vh; 
+    padding: 5px 20px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: var(--color-ligt-transparent);
+    transition-duration: 600ms;
+}
+header.shrink h1,
+header.shrink button {
+    color: var(--color-light);
+}
+
+/*Nav*/
+.menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 40%;
+    background-color: var(--color-light);
+    padding: 10px;
+    box-shadow: 2px 4px rgba(0, 0, 0, 0.500);
+    z-index: 999;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 0px 0px 0px 15px;
+    transition-duration: 600ms;
+}
+
+.menu.menu-shrink {
+    background-color: var(--color-ligt-transparent);
+}
+
+nav a {
+    background-color: var(--color-primary-dark);
+    color: var(--color-light);
+    width: 100%;
+    transition-duration: 600ms;
+}
+
+nav a.link-shrink {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+}
+  
+.menu.aberto {
+    display: flex;
+}
+
+/*section do video*/
+.aboutPage {
+    grid-area: aboutPage;
+    background-color: var(--color-primary-dark);
+    color: var(--color-light);
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    margin-bottom: 10px;
+    /*Video*/
+    position: relative; /* Importante para posicionamento do vídeo */
+    overflow: hidden; /* Garante que o vídeo não ultrapasse as bordas */
+    font-size: 1.5em;
+}
+
+.aboutPage .video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Faz o vídeo cobrir toda a área */
+    z-index: 0; /* Coloca o vídeo atrás do conteúdo */
+}
+
+.aboutPage div, .aboutPage a {
+    position: relative; /* Garante que fiquem acima do vídeo */
+    z-index: 1;
+}
+
+.aboutPage::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Overlay escuro com 50% */
+    z-index: 0; 
+}/*fim Video*/
+
+.aboutPage a {
+    width: 250px;
+    text-align: center;
+    border-radius: 10px 20px;
+    background-color: var(--color-light);
+    color: var(--color-primary-dark);
+}
+
+.aboutPage p {
+    color: var(--color-light);
+}
+
+/*Sobre mim*/
+.aboutMe {
+    grid-area: aboutMe;
+    display: grid;
+    grid-template-areas: 
+    "sobre"
+    "perfil"
+    "skills";
+    grid-column: 1fr;
+    gap: 20px;
+    background-color: var(--color-light);
+    min-height: 120vh;
+}
+
+.aboutMe h1 {
+    color: var(--color-primary-dark);
+}
+.aboutMe p {
+    color: var(--color-dark);
+}
+.sobre {
+    grid-area: sobre;
+}
+.perfil {
+    grid-area: perfil;
+    min-width: 100%;
+    min-height: 100%;
+    aspect-ratio: 1/1;
+    margin: auto;
+    background-color: #0A2F33;
+    background-image: url(../img/me.jpg);
+    background-position: center center;
+    background-size: cover;
+    border-radius: 10px;
+    border: 1px solid var(--color-dark);
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.600);
+}
+.skills {
+    grid-area: skills;
+    width: 90%;
+    margin: 50px auto;
+}
+.bar {
+    background-color: #eee;
+    height: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 2s ease-out;
+    width: 0; /* Start */
+}
+
+.fill.html.animate { width: 89%; background-color: #f16529; }
+.fill.css.animate { width: 96%; background-color: #2965f1; }
+.fill.js.animate { width: 71%; background-color: #f7df1e; }
+
+.skill {
+    margin-bottom: 15px;
+}
+
+/*Habilidades*/
+/* Adicione este código ao seu arquivo estilo.css */
+
+/*Habilidades*/
+.habilidades {
+    grid-area: habilidades;
+    background-color: var(--color-light);
+    background-image: url(../img/programming-background-collage.jpg);
+    background-size: cover;
+    background-position: top center;
+    background-attachment: fixed;
+    min-height: 110vh;
+    padding: 40px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.habilidades h1 {
+    color: var(--color-light);
+    margin-bottom: 40px;
+    font-size: 2rem;
+}
+.habilidades p {
+    color: var(--color-light)
+}
+
+.container-hab {
+    background-color: var(--color-ligt-transparent);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card-habilidade {
+    background-color: var(--color-light);
+    border-radius: 10px;
+    box-shadow: 0 2px 2px 4px var(--color-light);
+    padding: 25px;
+    width: 280px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    transition-duration: 1200ms;
+    transform: translate(50px, 50px);
+    opacity: 0;
+}
+
+.card-habilidade.animado {
+    transform: translate(0, 0);
+    opacity: 1;
+}
+
+/* Delay diferente por card para criar efeito cascata */
+.card-habilidade:nth-child(1) {
+    transition-delay: 100ms;
+}
+
+.card-habilidade:nth-child(2) {
+    transition-delay: 200ms;
+}
+
+.card-habilidade:nth-child(3) {
+    transition-delay: 400ms;
+}
+
+.card-habilidade:nth-child(4) {
+    transition-delay: 600ms;
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: var(--color-primary);
+}
+
+.card-habilidade h2 {
+    color: var(--color-primary-dark);
+    margin-bottom: 15px;
+}
+
+.card-habilidade p {
+    color: var(--color-secondary);
+    font-size: 0.9rem;
+}
+
+/*Projects*/
+.projects {
+    grid-area: projects;
+    background-color: var(--color-light);
+    min-height: 100vh;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "projects-res"
+    "cardbox";
+    gap: 20px;
+}
+
+.projects-res {
+    grid-area: projects-res;
+    background-color: var(--color-secondary);
+    color: var(--color-light);
+    padding: 10px;
+    border-radius: 10px;
+    height: fit-content;
+}
+.projects-res p {
+    color: var(--color-light);
+}
+
+.cardbox {
+    grid-area: cardbox;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    background-color: var(--color-light);
+    min-height: 100vh;
+    gap: 10px;
+}
+.cards {
+    padding: 20px;
+    width: 200px;
+    height: 200px;
+    background-color: var(--color-primary);
+    border-radius: 10px;
+    cursor: pointer;
+    transition-duration: 200ms;
+}
+  
+.cards.shadow {
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.400);
+    transition-duration: 200ms;
+}  
+.cards:hover {
+    transform: translate(-3px, -3px);
+    transition-duration: calc(200ms);
+    background-color: var(--color-primary-light);
+}
+.cards p {
+    color: var(--color-light);
+}
+
+/*Contact*/
+/* Footer Atualizado */
+.contact {
+    grid-area: contact;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-dark);
+    min-height: 100vh;
+    color: var(--color-light);
+    padding: 20px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.footer-info {
+    flex: 1;
+}
+
+.contact h1 {
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.contact h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background-color: var(--color-primary-light);
+    border-radius: 3px;
+}
+
+.contact h2 {
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+}
+
+.contact h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background-color: var(--color-primary-light);
+    border-radius: 2px;
+}
+
+.contact p {
+    color: var(--color-light);
+}
+
+/* Formulário de contato */
+.contact-form {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-light);
+    font-family: 'Quicksand', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 2px var(--color-primary-light);
+}
+
+.contact-form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.submit-btn {
+    background-color: var(--color-primary-light);
+    color: var(--color-light);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.submit-btn:hover {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: pulse 1s infinite;
+}
+
+/* Ícones de Redes Sociais */
+.social-links {
+    flex: 1;
+}
+
+.social-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-light);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(0);
+    transition: transform 0.3s ease;
+    border-radius: 50%;
+}
+
+.social-icon:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+/* Cores específicas para cada rede social */
+.social-icon.linkedin:hover {
+    background-color: #0077B5;
+}
+
+.social-icon.github:hover {
+    background-color: #333;
+}
+
+.social-icon.instagram:hover {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+.social-icon.facebook:hover {
+    background-color: #1877F2;
+}
+
+.social-icon.whatsapp:hover {
+    background-color: #25D366;
+}
+
+/* Ícones das redes sociais */
+.icon-linkedin::before,
+.icon-github::before,
+.icon-instagram::before,
+.icon-facebook::before,
+.icon-whatsapp::before {
+    font-family: "Font Awesome 5 Brands", sans-serif;
+    font-style: normal;
+    font-size: 22px;
+}
+
+.icon-linkedin::before { content: '\f0e1'; }
+.icon-github::before { content: '\f09b'; }
+.icon-instagram::before { content: '\f16d'; }
+.icon-facebook::before { content: '\f39e'; }
+.icon-whatsapp::before { content: '\f232'; }
+
+/* Footer bottom */
+.footer-bottom {
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* Animações para o Footer */
+.footer-content {
+    transform: translateY(30px);
+    opacity: 0;
+    transition: all 0.8s ease;
+}
+
+.footer-content.animated {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Notificação no envio do formulário */
+.notification {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--color-success);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.notification.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/*Tablets*/
+@media (min-width: 768px) {
+    body {
+        grid-template-columns: 1fr 2fr;
+        grid-template-areas: 
+        "header header"
+        "aboutPage aboutPage"
+        "aboutMe aboutMe"
+        "habilidades habilidades"
+        "projects projects"
+        "contact contact";
+    }
+    .aboutMe {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-areas: 
+        "sobre perfil"
+        "sobre skills";
+    }
+    .perfil {
+        max-width: 100%;
+    }
+    header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .cards {
+        width: 90%;
+    }
+    .menu {
+        display: none;
+    }
+    .menu-toggle {
+        display: block;
+    }
+    .cards-container {
+        flex-wrap: wrap;
+    }
+    .card-habilidade {
+        width: calc(50% - 20px);
+    }
+    .footer-content {
+        flex-direction: row;
+    }
+    
+    .footer-info {
+        flex: 2;
+        padding-right: 40px;
+    }
+    
+    .social-links {
+        flex: 1;
+    }
+}
+
+/*Desktop*/
+@media (min-width:1024px) {
+    body {
+        grid-template-columns: repeat(3, 1f);
+        grid-template-areas: 
+        "header header header"
+        "aboutPage aboutPage aboutPage"
+        "aboutMe aboutMe aboutMe"
+        "habilidades habilidades habilidades"
+        "projects projects projects"
+        "contact contact contact";
+    }
+    .aboutMe {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-template-areas: 
+          "sobre perfil"
+          "skills skills";
+        gap: 20px;
+        align-items: start;
+    }
+    .projects {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+        "projects-res cardbox";
+    }
+    header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .menu {
+        display: none;
+    }
+    .menu-toggle {
+        display: block;
+    }
+    .aboutPage {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        font-size: 200%;
+    }
+    .cards {
+        width: 40%;
+    }
+    .cards-container {
+        flex-wrap: nowrap;
+    }
+    .card-habilidade {
+        width: calc(25% - 20px);
+    }
+    .contact {
+        padding: 60px 80px;
+    }
+    
+    .social-icons {
+        gap: 20px;
+    }
+}
